@@ -2,11 +2,13 @@ const express = require('express');
 const parser = require('body-parser').json();
 const Politician = require(__dirname + '/../models/democraticModel');
 const handleDBError = require(__dirname + '/../lib/db_error_handler');
+const jwtAuth = require(__dirname + '/../lib/jwt_auth');
 
 var politicianRouter = module.exports = exports = express.Router();
 
-politicianRouter.post('/demPoliticians', parser, (req, res) => {
+politicianRouter.post('/demPoliticians', jwtAuth, parser, (req, res) => {
   var newPolitician = new Politician(req.body);
+  newPolitician.politicianId = req.user._id;
   newPolitician.save((err, data) => {
     if (err) return handleDBError(err, res);
     res.status(200).json(data);
@@ -20,6 +22,14 @@ politicianRouter.get('/demPoliticians', (req, res) => {
     res.status(200).json(data);
   });
   console.log('GETted!');
+});
+
+politicianRouter.get('/myDemPoliticians', jwtAuth, (req, res) => {
+  Politician.find({politicianId: req.user._id}, (err, data) => {
+    if (err) return handleDBError(err, res);
+    res.status(200).json(data);
+  });
+  console.log('GETted with Auth!');
 });
 
 politicianRouter.get('/demPoliticians/:id', (req, res) => {
@@ -47,7 +57,6 @@ politicianRouter.delete('/demPoliticians/:id', (req, res) => {
   });
   console.log('DELETEd!');
 });
-
 politicianRouter.get('/demPoliticians/info', function(req, res) {
   res.send('Since 1848, the Democratic National Committee has been the home of the Democratic Party, the oldest continuing party in the United States.');
 });

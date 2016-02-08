@@ -9,7 +9,8 @@ var democraticSchema = new mongoose.Schema({
   prevExper: {type: Boolean},
   age: {type: Number, min: 18},
   living: {type: Boolean},
-  money: {type: Number}
+  money: {type: Number},
+  politicianId: String
 });
 
 module.exports = mongoose.model("demPolitician", democraticSchema);
