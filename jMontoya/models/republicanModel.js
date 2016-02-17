@@ -2,7 +2,7 @@ var mongoose = require('mongoose');
 
 var republicanSchema = new mongoose.Schema({
   party: {type: String, default: 'Republican'},
-  fullName: {type: String, trim: true, unique: true, required: true},
+  name: {type: String, trim: true, unique: true, required: true},
   email: {type: String, index: true, match: /.+\@.+\..+/},
   gender: {type: String, enum: ['Male', 'Female']},
   cityFrom: {type: String},

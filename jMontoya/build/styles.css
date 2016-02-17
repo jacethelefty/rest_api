@@ -1,0 +1,36 @@
+html {
+  background: url(http://popwrapped.com/wp-content/uploads/2016/01/Vote1.png) no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+
+section{
+  background-color: #fff;
+  margin-top: -10px;
+}
+
+p {
+  width: 200px;
+}
+
+h1 {
+  font-family: sans-serif;
+}
+
+h1:nth-of-type(2) {
+  border-top: 4px solid black;
+  width: 50%;
+  padding-top: 15px;
+}
+
+.left, .right {
+  width: 50%; height: 350px;
+}
+.left{
+  float: left;
+}
+.right{
+  float: right;
+}

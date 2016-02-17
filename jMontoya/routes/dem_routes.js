@@ -31,9 +31,9 @@ politicianRouter.get('/demPoliticians/:id', (req, res) => {
 });
 
 politicianRouter.put('/demPoliticians/:id', parser, (req, res) => {
-  var republicanData = req.body;
-  delete republicanData._id;
-  Politician.update({_id: req.params.id}, republicanData, (err) => {
+  var democratData = req.body;
+  delete democratData._id;
+  Politician.update({_id: req.params.id}, democratData, (err) => {
     if (err) return handleDBError(err, res);
     res.status(200).json({msg: 'you have successfully updated the file'});
   });

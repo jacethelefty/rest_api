@@ -1,0 +1,16 @@
+How to use:
+
+Run dependencies
+npm install
+
+Create a directory called db
+mkdir db
+
+Start the mongo db
+mongod —dbpath=./db —smallfiles
+
+Start server
+node server.js
+
+View Page/ Enter into browser
+localhost:5000
